@@ -13,7 +13,7 @@
 [구조보기]()
 
 ## 서비스 요청 흐름도
-![flow](././.github/service_flow.png)
+![flow](plannie/.github/service_flow.png)
 
 
 ## 🏋️‍♀️ 종사자
