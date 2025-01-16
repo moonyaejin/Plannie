@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="300212c4-1320-4ca9-95f3-0780bade260e" name="Changes" comment="걍..." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;moonyaejin&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/moonyaejin/Plannie.git",
+    "accountId": "405cf42f-fc49-47fd-b9d3-1b95782bc42d"
+  }
+}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2k3DlXduEwzVvjPHkXksaU7KIfM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xaexix/Desktop/plannie&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="plannie" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="plannie" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="300212c4-1320-4ca9-95f3-0780bade260e" name="Changes" comment="" />
+      <created>1722503518651</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722503518651</updated>
+      <workItem from="1722503519755" duration="158000" />
+      <workItem from="1722503682324" duration="733000" />
+      <workItem from="1722504418122" duration="110000" />
+      <workItem from="1722504533272" duration="1455000" />
+      <workItem from="1722506079694" duration="750000" />
+      <workItem from="1722507481068" duration="2694000" />
+      <workItem from="1722916801766" duration="97000" />
+      <workItem from="1722917091363" duration="5529000" />
+      <workItem from="1722923365825" duration="1168000" />
+      <workItem from="1722989620804" duration="58000" />
+      <workItem from="1723091443935" duration="1716000" />
+      <workItem from="1723191908314" duration="169000" />
+      <workItem from="1725942277355" duration="194000" />
+      <workItem from="1725942473749" duration="137000" />
+      <workItem from="1725942613525" duration="3085000" />
+      <workItem from="1725945786451" duration="902000" />
+      <workItem from="1725946692013" duration="10000" />
+      <workItem from="1725946725475" duration="12000" />
+      <workItem from="1725946739781" duration="8000" />
+      <workItem from="1725946759841" duration="1226000" />
+      <workItem from="1725948245866" duration="524000" />
+      <workItem from="1725948772517" duration="11908000" />
+      <workItem from="1727934654732" duration="105000" />
+      <workItem from="1727935435794" duration="140000" />
+      <workItem from="1727942103782" duration="1591000" />
+      <workItem from="1728363213800" duration="1230000" />
+      <workItem from="1728968602417" duration="2684000" />
+      <workItem from="1728973801239" duration="2252000" />
+      <workItem from="1728976059885" duration="464000" />
+      <workItem from="1728976756274" duration="1739000" />
+      <workItem from="1730188973832" duration="2360000" />
+      <workItem from="1730513781454" duration="3234000" />
+      <workItem from="1730522572375" duration="3339000" />
+      <workItem from="1730636984090" duration="1849000" />
+      <workItem from="1730639065584" duration="88000" />
+      <workItem from="1730639157790" duration="157000" />
+      <workItem from="1730639328126" duration="10812000" />
+      <workItem from="1730780346132" duration="1775000" />
+      <workItem from="1730783546384" duration="21000" />
+      <workItem from="1730789459895" duration="677000" />
+      <workItem from="1731998734631" duration="1786000" />
+      <workItem from="1737003975176" duration="158000" />
+      <workItem from="1737004332242" duration="1198000" />
+    </task>
+    <task id="LOCAL-00001" summary="chatUpdate">
+      <option name="closed" value="true" />
+      <created>1726118221654</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726118221654</updated>
+    </task>
+    <task id="LOCAL-00002" summary="소개 오타 수정">
+      <option name="closed" value="true" />
+      <created>1730639726849</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730639726849</updated>
+    </task>
+    <task id="LOCAL-00003" summary="생년월일 선택 수정">
+      <option name="closed" value="true" />
+      <created>1730646078837</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730646078837</updated>
+    </task>
+    <task id="LOCAL-00004" summary="생년월일 선택 수정">
+      <option name="closed" value="true" />
+      <created>1730647863984</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730647863984</updated>
+    </task>
+    <task id="LOCAL-00005" summary="스케쥴 추가, 상세보기 수정">
+      <option name="closed" value="true" />
+      <created>1730658083804</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730658083804</updated>
+    </task>
+    <task id="LOCAL-00006" summary="스케쥴 추가, 상세보기 수정">
+      <option name="closed" value="true" />
+      <created>1730660222782</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730660222782</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="chatUpdate" />
+    <MESSAGE value="소개 오타 수정" />
+    <MESSAGE value="생년월일 선택 수정" />
+    <MESSAGE value="스케쥴 추가, 상세보기 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="스케쥴 추가, 상세보기 수정" />
+  </component>
+</project>
