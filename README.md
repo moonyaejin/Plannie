@@ -16,23 +16,15 @@
 
 ## 🏋️‍♀️ 종사자
 
+#### ⛏️Back-FrontEnd
+🐹 [문예진](https://github.com/orgs/kgu-mission/people/moonyaejin)
+
+
+🐧 [장서진](https://github.com/juytj11) 
 
 #### 🔧 GPT - FineTuner
 
 🐭 [박승연](https://github.com/Syeonnny)
-
-
-🍔 [박진서](https://github.com/orgs/kgu-mission/people/j2nseo)
-
-
-#### ⛏️Back-FrontEnd
-🐧 [장서진](https://github.com/juytj11) 
-
-
-🐸 [유찬혁](https://github.com/ChanHyuckYou)
-
-
-🐹 [문예진](https://github.com/orgs/kgu-mission/people/moonyaejin)
 
 -----
 # 📚 Stacks
