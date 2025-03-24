@@ -44,12 +44,8 @@
 ## Communication
 ![Notion](https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white)  ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=black)
 
-
-
-
-
-
 ##  ✉️향후 과제[2024.11.27 - ...]
+- [ ] GPT Fine-tuning 성능 개선 (오답률 ↓)
+- [ ] 사용자별 맞춤 추천 로직 추가
+- [ ] 유저 피드백 수집 및 반영
 
-
-1. 모델 성능 높이기...?
