@@ -1,9 +1,10 @@
 import * as React from "react";
-import { View, Text, ScrollView, ActivityIndicator } from "react-native";
+import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import styles from "../Styles/MonthListStyles";
 import { API_URL } from '@env';
+import { Color } from '../GlobalStyles';
 import BackButton from '../nav/BackButton';
 
 const MonthList = () => {
@@ -33,8 +34,16 @@ const MonthList = () => {
         fetchSchedules();
     }, []);
 
-    if (loading) return <ActivityIndicator size="large" color="#0000ff" />;
-    if (error) return <Text style={{ color: 'red' }}>{error}</Text>;
+    if (loading) return (
+        <View style={stateStyles.center}>
+            <ActivityIndicator size="large" color={Color.colorLightskyblue_100} />
+        </View>
+    );
+    if (error) return (
+        <View style={stateStyles.center}>
+            <Text style={stateStyles.errorText}>{error}</Text>
+        </View>
+    );
 
     return (
         <View style={styles.monthList}>
@@ -61,5 +70,20 @@ const MonthList = () => {
         </View>
     );
 };
+
+const stateStyles = StyleSheet.create({
+    center: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Color.colorLavender,
+    },
+    errorText: {
+        color: '#E53935',
+        fontSize: 15,
+        textAlign: 'center',
+        paddingHorizontal: 30,
+    },
+});
 
 export default MonthList;

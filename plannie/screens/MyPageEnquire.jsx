@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Text, View, TouchableOpacity, Linking, Alert, TextInput } from "react-native";
 import { useState } from "react";
+import { Text, View, TouchableOpacity, Alert, TextInput, Keyboard } from "react-native";
+import * as MailComposer from "expo-mail-composer";
 import styles from "../Styles/MyPageEnquireStyles";
 import MyPageTopNav from "../nav/MyPageTopNav";
 import BottomNav from "../nav/BottomNav";
@@ -9,20 +9,28 @@ const MyPageEnquire = () => {
     const [subject, setSubject] = useState('');
     const [body, setBody] = useState('');
 
-    const handleSendEmail = () => {
-        const email = "missionkinggu@gmail.com";
-
-        if (!subject || !body) {
+    const handleSendEmail = async () => {
+        if (!subject.trim() || !body.trim()) {
             Alert.alert("오류", "제목과 내용을 입력해주세요.");
             return;
         }
 
-        const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        Keyboard.dismiss();
 
-        Linking.openURL(url).catch((error) => {
-            console.error("Error opening email client:", error);
-            Alert.alert("오류", "이메일 클라이언트를 열 수 없습니다.");
+        const isAvailable = await MailComposer.isAvailableAsync();
+        if (!isAvailable) {
+            Alert.alert("오류", "이메일 앱을 사용할 수 없습니다.");
+            return;
+        }
+
+        await MailComposer.composeAsync({
+            recipients: ["missionkinggu@gmail.com"],
+            subject: subject.trim(),
+            body: body.trim(),
         });
+
+        setSubject('');
+        setBody('');
     };
 
     return (

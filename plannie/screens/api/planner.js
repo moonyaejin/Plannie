@@ -7,7 +7,7 @@ import moment from "moment";
 const getAuthHeader = async () => {
     const token = await AsyncStorage.getItem('userToken');
     if (!token) {
-        Alert.alert("Authentication required", "Please log in.");
+        Alert.alert("로그인 필요", "다시 로그인해주세요.");
         throw new Error("No token");
     }
     return { Authorization: `Bearer ${token}` };

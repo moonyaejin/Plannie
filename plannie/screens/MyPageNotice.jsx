@@ -1,12 +1,9 @@
-import * as React from "react";
 import { Text, View } from "react-native";
 import styles from "../Styles/MyPageNoticeStyles";
-import {useNavigation} from "@react-navigation/native";
 import MyPageTopNav from "../nav/MyPageTopNav";
 import BottomNav from "../nav/BottomNav";
 
 const MyPageNotice = () => {
-    const navigation = useNavigation();
     return (
         <View style={styles.mypageNotice}>
             <MyPageTopNav/>

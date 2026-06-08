@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Alert, Modal, Button } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Alert, Modal } from "react-native";
 import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styles from "../Styles/ScheduleCreateStyles";
@@ -11,8 +11,8 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
     const [title, setTitle] = React.useState("");
     const [startTime, setStartTime] = React.useState(new Date());
     const [endTime, setEndTime] = React.useState(new Date());
-    const [notification, setNotification] = React.useState("");
-    const [repeat, setRepeat] = React.useState("");
+    const [notification, setNotification] = React.useState("안 함");
+    const [repeat, setRepeat] = React.useState("안 함");
     const [memo, setMemo] = React.useState("");
     const [isNotificationModalVisible, setNotificationModalVisible] = React.useState(false);
     const [isRepeatModalVisible, setRepeatModalVisible] = React.useState(false);
@@ -25,8 +25,12 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
     const repeatOptions = ["안 함", "월", "화", "수", "목", "금", "토", "일"];
 
     const handleSave = () => {
-        if (!title) {
+        if (!title.trim()) {
             Alert.alert("오류", "일정 제목을 입력하세요.");
+            return;
+        }
+        if (endTime <= startTime) {
+            Alert.alert("오류", "종료 시간은 시작 시간보다 늦어야 합니다.");
             return;
         }
 
@@ -138,7 +142,9 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                                 if (selectedDate) setStartTime(selectedDate);
                             }}
                         />
-                        <Button title="닫기" onPress={() => setShowStartPicker(false)} />
+                        <TouchableOpacity style={styles.modalCloseButton} onPress={() => setShowStartPicker(false)}>
+                            <Text style={styles.modalCloseText}>닫기</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -162,7 +168,9 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                                 if (selectedDate) setEndTime(selectedDate);
                             }}
                         />
-                        <Button title="닫기" onPress={() => setShowEndPicker(false)} />
+                        <TouchableOpacity style={styles.modalCloseButton} onPress={() => setShowEndPicker(false)}>
+                            <Text style={styles.modalCloseText}>닫기</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -189,7 +197,9 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
-                    <Button title="닫기" onPress={() => setNotificationModalVisible(false)}/>
+                    <TouchableOpacity style={styles.modalCloseButton} onPress={() => setNotificationModalVisible(false)}>
+                        <Text style={styles.modalCloseText}>닫기</Text>
+                    </TouchableOpacity>
                 </View>
             </Modal>
 
@@ -215,7 +225,9 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
-                    <Button title="닫기" onPress={() => setRepeatModalVisible(false)}/>
+                    <TouchableOpacity style={styles.modalCloseButton} onPress={() => setRepeatModalVisible(false)}>
+                        <Text style={styles.modalCloseText}>닫기</Text>
+                    </TouchableOpacity>
                 </View>
             </Modal>
         </View>

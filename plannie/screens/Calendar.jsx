@@ -31,6 +31,19 @@ const Calendar = () => {
     };
 
     const handleSaveEdit = async () => {
+        if (!editTitle.trim()) {
+            Alert.alert('오류', '제목을 입력해주세요.');
+            return;
+        }
+        const timeRegex = /^\d{2}:\d{2}$/;
+        if (!timeRegex.test(editStartTime) || !timeRegex.test(editEndTime)) {
+            Alert.alert('오류', '시간 형식이 올바르지 않습니다. (예: 09:00)');
+            return;
+        }
+        if (editStartTime >= editEndTime) {
+            Alert.alert('오류', '종료 시간은 시작 시간보다 늦어야 합니다.');
+            return;
+        }
         const ok = await updateSchedule(editSchedule.id, {
             title: editTitle,
             memo: editMemo,
@@ -67,7 +80,7 @@ const Calendar = () => {
             try {
                 const token = await AsyncStorage.getItem('userToken');
                 if (!token) {
-                    Alert.alert("Session Expired", "Please log in again.");
+                    Alert.alert("세션 만료", "다시 로그인해주세요.");
                     navigation.navigate('Login');
                 }
             } catch (error) {
@@ -152,7 +165,7 @@ const Calendar = () => {
                     </View>
                 </View>
                 <View style={[styles.dateHeader, styles.weekSpaceBlock]}>
-                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, index) => (
+                    {['일', '월', '화', '수', '목', '금', '토'].map((day, index) => (
                         <Text style={styles.sun} key={index}>{day}</Text>
                     ))}
                 </View>

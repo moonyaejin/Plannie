@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Text, View, TouchableOpacity, Image, Modal, ScrollView, ActivityIndicator } from "react-native";
 import styles from "../Styles/ScheduleAddStyles";
+import { Color } from '../GlobalStyles';
 import ScheduleCreate from "./ScheduleCreate";
 import {fetchSchedulesByDate, updateCheckboxStatus} from "./api/planner";
 
@@ -39,7 +40,7 @@ const ScheduleAdd = ({ selectedDate }) => {
 
             <ScrollView style={styles.schList}>
                 {loading ? (
-                    <ActivityIndicator size="large" color="#0000ff" />
+                    <ActivityIndicator size="large" color={Color.colorLightskyblue_100} />
                 ) : schedules.length > 0 ? (
                     schedules.map((schedule, index) => (
                         <View key={index} style={[styles.schList1, styles.schFlexBox]}>
