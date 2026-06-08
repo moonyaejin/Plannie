@@ -1,65 +1,137 @@
-# 📆 AI로 학습된 챗봇으로 일정을 편리하게 관리할 수 있는 애플리케이션, Plannie
+# 📆 Plannie — AI 챗봇 기반 일정 관리 앱
 
+> 계획 세우는 게 어려울 땐? **Plannie**  
+> AI와 대화하듯 일정을 추가하고, 학습 계획을 자동으로 생성해주는 React Native 앱입니다.
 
-# 🖥️ Screens <<-- 여기에 프로젝트 설명도 같이
+---
 
+## 🗺️ 화면 흐름
 
+```
+StartPage
+  └─ Login ─────────────────────────────── Calendar (메인)
+       └─ SignUp1 → SignUp2 → SignUp3          │
+                                      ┌────────┼────────┐
+                                  ChatMain  Calendar  MyPageMain
+                                                │         │
+                                          ScheduleAdd   MyPageProfile → ProfileEdit
+                                          MonthList     MyPageNotice
+                                                        MyPageAlarm
+                                                        MyPageEnquire
+                                                        DeleteAccount
+```
 
+---
 
+## 🏗️ 서비스 아키텍처
 
-## 🗂️ Structure
-[구조보기]()
+```mermaid
+flowchart LR
+    subgraph Client["Client"]
+        RN["React Native\n+ Expo"]
+    end
 
-## 서비스 요청 흐름도
+    subgraph Backend["Back-End Server (Amazon EC2)"]
+        direction TB
+        Nginx["Nginx"]
+        Spring["Spring Boot"]
+    end
 
+    subgraph AI["AI"]
+        OpenAI["OpenAI GPT"]
+    end
 
-![flow](.github/service_flow.png)
+    subgraph DB["Amazon RDS"]
+        PostgreSQL["PostgreSQL\n+ pgvector"]
+    end
 
+    RN <-->|REST API| Nginx
+    Nginx --> Spring
+    Spring <-->|AI 요청| OpenAI
+    Spring <-->|데이터| PostgreSQL
+```
 
-## 🏋️‍♀️ 종사자
+---
 
+## 📚 Tech Stack
 
-#### 🔧 GPT - FineTuner
+### Frontend
+![React Native](https://img.shields.io/badge/React_Native-61DAFB?style=for-the-badge&logo=React&logoColor=black)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=Expo&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
 
-🐭 [박승연](https://github.com/Syeonnny)
+### Backend
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
 
+### AI
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=OpenAI&logoColor=white)
 
-🍔 [박진서](https://github.com/orgs/kgu-mission/people/j2nseo)
+### Database
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
+### Infra
+![Amazon EC2](https://img.shields.io/badge/Amazon_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)
+![Amazon RDS](https://img.shields.io/badge/Amazon_RDS-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 
-#### ⛏️Back-FrontEnd
-🐧 [장서진](https://github.com/juytj11) 
+---
 
+## ⚙️ 주요 기능
 
-🐸 [유찬혁](https://github.com/ChanHyuckYou)
+- **AI 채팅 기반 일정 관리** — 자연어 입력으로 일정 추가·삭제·월별 대량 삭제
+- **학습 계획 자동 생성** — 시험명·기간·공부 시간을 입력하면 AI가 일정 자동 생성
+- **캘린더 뷰** — 월별 일정 시각화 및 날짜별 일정 확인
+- **회원 관리** — 회원가입(3단계)·로그인·프로필 조회 및 수정·회원 탈퇴
 
+---
 
-🐹 [문예진](https://github.com/orgs/kgu-mission/people/moonyaejin)
+## 🚀 시작하기
 
------
-# 📚 Stacks
+```bash
+# 의존성 설치
+cd plannie
+npm install
 
-## Environment
-![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=black)
+# 환경 변수 설정
+# .env에 API_URL 입력
 
-## FrontEnd
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)  ![CSS3](https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=black)
+# 앱 실행
+npx expo start
+```
 
-## BackEnd
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=Express&logoColor=white)  ![Node.js](https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white)  ![MariaDB](https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white)  ![MongoDB](https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white)
+---
 
-## Infra
-![Amazon EC2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)  ![Amazon RDS](https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white)  ![Docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+## 📁 프로젝트 구조
 
-## Communication
-![Notion](https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white)  ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=black)
+```
+plannie/
+├── App.js                   # 루트 네비게이터 (RootStack)
+├── GlobalStyles.jsx         # 공통 색상·폰트 상수
+├── nav/                     # 네비게이션 컴포넌트
+│   ├── BottomNav.jsx        # 하단 탭 (캘린더·채팅·마이페이지)
+│   ├── MyPageTopNav.jsx     # 마이페이지 상단 네비
+│   └── BackButton.jsx       # 뒤로가기 버튼
+├── screens/                 # 화면 컴포넌트 (17개)
+│   ├── api/                 # API 호출 모듈
+│   │   ├── user.js          # 인증·프로필
+│   │   ├── signup.js        # 회원가입
+│   │   └── planner.js       # 일정 CRUD
+│   └── ...
+├── Styles/                  # 화면별 스타일 파일
+└── assets/                  # 이미지·폰트
+```
 
+---
 
+## ✅ 향후 과제
 
-
-
-
-##  ✉️향후 과제[2024.11.27 - ...]
-
-
-1. 모델 성능 높이기...?
+- [ ] 소셜 로그인 (카카오, 구글)
+- [ ] 아이디 / 비밀번호 찾기 기능
+- [ ] 푸시 알림 연동
+- [ ] 반복 일정 기능 (매일·매주·매월)
+- [ ] 프로필 이미지 직접 업로드
+- [ ] 일정 공유 및 그룹 플래너
+- [ ] AI 응답 정확도 개선 및 모델 업그레이드
+- [ ] 다크모드 지원
