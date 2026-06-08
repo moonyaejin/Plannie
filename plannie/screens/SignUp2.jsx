@@ -1,79 +1,71 @@
-
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native';
+import BackButton from '../nav/BackButton';
 
 const SignUp2 = ({ navigation, route }) => {
-    const { email, password } = route.params; // SignUp1에서 전달된 데이터
+    const { email, password } = route.params;
     const [nickname, setNickname] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
 
     const handleNext = () => {
-        // 입력받은 데이터를 SignUp3로 전달
-        navigation.navigate('SignUp3', {
-            email,
-            password,
-            nickname,
-            name,
-            phone
-        });
+        navigation.navigate('SignUp3', { email, password, nickname, name, phone });
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Let’s join the Plannie</Text>
-            <Text style={styles.requiredText}>* 필수입력항목</Text>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <BackButton />
+                <Text style={styles.header}>Let's join the Plannie</Text>
+                <Text style={styles.requiredText}>* 필수입력항목</Text>
 
-            <View style={styles.formContainer}>
-                {/* Nickname Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>닉네임 *</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="닉네임 입력"
-                            placeholderTextColor="#878787"
-                            value={nickname}
-                            onChangeText={setNickname}
-                        />
+                <View style={styles.formContainer}>
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>닉네임 *</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                placeholder="닉네임 입력"
+                                placeholderTextColor="#878787"
+                                value={nickname}
+                                onChangeText={setNickname}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/* Name Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>이름</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="이름 입력"
-                            placeholderTextColor="#878787"
-                            value={name}
-                            onChangeText={setName}
-                        />
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>이름</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                placeholder="이름 입력"
+                                placeholderTextColor="#878787"
+                                value={name}
+                                onChangeText={setName}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/* Phone Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>휴대폰</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="전화번호 입력"
-                            placeholderTextColor="#878787"
-                            keyboardType="phone-pad"
-                            value={phone}
-                            onChangeText={setPhone}
-                        />
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>휴대폰</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                placeholder="전화번호 입력"
+                                placeholderTextColor="#878787"
+                                keyboardType="phone-pad"
+                                value={phone}
+                                onChangeText={setPhone}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/* Next Button */}
-                <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
-                    <Text style={styles.nextButtonText}>다음</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+                        <Text style={styles.nextButtonText}>다음</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

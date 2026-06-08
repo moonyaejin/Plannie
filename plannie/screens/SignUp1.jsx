@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import axios from 'axios';
+import { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet, Alert } from 'react-native';
+import { checkEmailAvailability } from './api/signup';
+import BackButton from '../nav/BackButton';
 
 const SignUp1 = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -8,77 +9,82 @@ const SignUp1 = ({ navigation }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleNext = async () => {
+        if (!email) {
+            Alert.alert('오류', '이메일을 입력해주세요.');
+            return;
+        }
         if (password !== confirmPassword) {
             Alert.alert('오류', '비밀번호가 일치하지 않습니다.');
             return;
         }
+        if (password.length < 8) {
+            Alert.alert('오류', '비밀번호는 8자 이상이어야 합니다.');
+            return;
+        }
 
         const { available, message } = await checkEmailAvailability(email);
-
         if (available) {
             navigation.navigate('SignUp2', { email, password });
         } else {
             Alert.alert('오류', message);
         }
     };
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Let’s join the Plannie</Text>
-            <Text style={styles.requiredText}>* 필수입력항목</Text>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <BackButton />
+                <Text style={styles.header}>Let's join the Plannie</Text>
+                <Text style={styles.requiredText}>* 필수입력항목</Text>
 
-            <View style={styles.formContainer}>
-                {/* Email Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>이메일 *</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="plannie@mission.com"
-                            placeholderTextColor="#878787"
-                            value={email}
-                            onChangeText={setEmail}
-                        />
+                <View style={styles.formContainer}>
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>이메일 *</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                placeholder="plannie@mission.com"
+                                placeholderTextColor="#878787"
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/* Password Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>비밀번호 *</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            secureTextEntry
-                            value={password}
-                            onChangeText={setPassword}
-                        />
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>비밀번호 *</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                secureTextEntry
+                                value={password}
+                                onChangeText={setPassword}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                {/* Confirm Password Section */}
-                <View style={styles.inputGroup}>
-                    <Text style={styles.label}>비밀번호 확인 *</Text>
-                    <View style={styles.inputBox}>
-                        <TextInput
-                            style={styles.inputText}
-                            secureTextEntry
-                            value={confirmPassword}
-                            onChangeText={setConfirmPassword}
-                        />
+                    <View style={styles.inputGroup}>
+                        <Text style={styles.label}>비밀번호 확인 *</Text>
+                        <View style={styles.inputBox}>
+                            <TextInput
+                                style={styles.inputText}
+                                secureTextEntry
+                                value={confirmPassword}
+                                onChangeText={setConfirmPassword}
+                            />
+                        </View>
                     </View>
+
+                    <Text style={styles.passwordRequirement}>* 8자 이상의 영문자, 숫자, 특수문자 포함</Text>
+
+                    <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+                        <Text style={styles.nextButtonText}>다음</Text>
+                    </TouchableOpacity>
                 </View>
-
-                {/* Password Requirements */}
-                <Text style={styles.passwordRequirement}>* 8자 이상의 영문자, 숫자, 특수문자 포함</Text>
-
-                {/* Next Button */}
-                <TouchableOpacity
-                    style={styles.nextButton}
-                    onPress={handleNext}
-                >
-                    <Text style={styles.nextButtonText}>다음</Text>
-                </TouchableOpacity>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

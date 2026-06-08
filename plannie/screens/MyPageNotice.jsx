@@ -24,18 +24,6 @@ const MyPageNotice = () => {
 지금까지 없었던 새로운 일정 관리 앱을 지금 바로 베타버전으로 만나보세요`}</Text>
                     </View>
                 </View>
-                <View style={styles.noticeSpaceBlock}>
-                    <View>
-                        <Text style={[styles.plannie, styles.textLayout]}>
-                            Plannie 출시!
-                        </Text>
-                        <Text
-                            style={[styles.text, styles.textLayout]}
-                        >{`10월 중 정식 오픈 예정!
-
-지금까지 없었던 새로운 일정 관리 앱을 지금 바로 베타버전으로 만나보세요`}</Text>
-                    </View>
-                </View>
             </View>
             <BottomNav/>
         </View>

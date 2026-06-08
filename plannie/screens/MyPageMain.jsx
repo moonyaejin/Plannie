@@ -1,15 +1,11 @@
-import * as React from "react";
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 import styles from '../Styles/MyPageMainStyles';
 import BottomNav from "../nav/BottomNav";
 import MyPageTopNav from "../nav/MyPageTopNav";
 import { useNavigation } from "@react-navigation/native";
-import {deleteUser, fetchNickname, handleLogout} from "./api/user";
-import DeleteAccount from "./DeleteAccount";
+import {fetchNickname, handleLogout} from "./api/user";
 
 const MyPageMain = () => {
     const navigation = useNavigation();
@@ -113,7 +109,7 @@ const MyPageMain = () => {
                 <Text style={styles.textTypo}>로그아웃</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => deleteUser()}
+                onPress={() => navigation.navigate('DeleteAccount')}
                 style={[styles.mpWithdrawalButton, styles.buttonLayout]} >
                 <Text style={[styles.text, styles.textTypo]}>탈퇴하기</Text>
             </TouchableOpacity>

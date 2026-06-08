@@ -3,8 +3,6 @@ import { View, Text, TouchableOpacity, TextInput, ScrollView, Alert, Modal, Butt
 import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styles from "../Styles/ScheduleCreateStyles";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from 'moment';
 import {createSchedule} from "./api/planner";
 
@@ -15,7 +13,6 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
     const [endTime, setEndTime] = React.useState(new Date());
     const [notification, setNotification] = React.useState("");
     const [repeat, setRepeat] = React.useState("");
-    const [url, setUrl] = React.useState("");
     const [memo, setMemo] = React.useState("");
     const [isNotificationModalVisible, setNotificationModalVisible] = React.useState(false);
     const [isRepeatModalVisible, setRepeatModalVisible] = React.useState(false);
@@ -41,7 +38,6 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
             memo,
             notification,
             repeat,
-            url,
             closeModal
         });
     };
@@ -111,15 +107,6 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                         <Text style={styles.scDateText}>반복 여부: {repeat}</Text>
                     </TouchableOpacity>
 
-                    <Text style={[styles.scUrlText, styles.dateTypo]}>연관 사항 URL</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="URL을 입력하세요"
-                        placeholderTextColor="#A9A9A9"
-                        value={url}
-                        onChangeText={setUrl}
-                    />
-
                     <Text style={[styles.scEpText, styles.dateTypo]}>메모</Text>
                     <TextInput
                         style={[styles.scMemo, styles.input]}
@@ -146,7 +133,7 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                             mode="time"
                             is24Hour={true}
                             display="spinner"
-                            onChange={(event, selectedDate) => {
+                            onChange={(_, selectedDate) => {
                                 setShowStartPicker(false);
                                 if (selectedDate) setStartTime(selectedDate);
                             }}
@@ -170,7 +157,7 @@ const ScheduleCreate = ({ selectedDate, closeModal }) => {
                             mode="time"
                             is24Hour={true}
                             display="spinner"
-                            onChange={(event, selectedDate) => {
+                            onChange={(_, selectedDate) => {
                                 setShowEndPicker(false);
                                 if (selectedDate) setEndTime(selectedDate);
                             }}
