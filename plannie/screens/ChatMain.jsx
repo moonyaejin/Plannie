@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from '@env';
 
-const ChatChatting = () => {
+const ChatMain = () => {
     const navigation = useNavigation();
     const [messages, setMessages] = useState([
         {
@@ -311,4 +311,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ChatChatting;
+export default ChatMain;

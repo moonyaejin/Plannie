@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native';
 import { loginUser } from "./api/user";
 
-const Login2 = ({ navigation }) => {
+const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -157,4 +157,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login2;
+export default Login;

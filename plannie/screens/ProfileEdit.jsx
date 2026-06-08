@@ -1,4 +1,5 @@
-import { View, Text, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { Image } from 'expo-image';
 import { useEffect, useState } from 'react';
 import { styles } from '../Styles/ProfileEditStyles';
 import { useNavigation } from "@react-navigation/native";
@@ -51,12 +52,13 @@ const ProfileEdit = () => {
             <View style={styles.header}>
                 <Text style={styles.title}>회원정보 수정</Text>
             </View>
-            <TouchableOpacity style={styles.profileImageContainer}>
+            <View style={styles.profileImageContainer}>
                 <Image
-                    source={{ uri: formData.profileimg || 'https://via.placeholder.com/100' }}
+                    source={require('../assets/MP_Photo.png')}
                     style={styles.profileImage}
+                    contentFit="cover"
                 />
-            </TouchableOpacity>
+            </View>
             <View style={styles.formContainer}>
                 <View style={styles.formRow}>
                     <Text style={styles.label}>이름</Text>
