@@ -6,11 +6,20 @@ export const checkEmailAvailability = async () => {
     return { available: true };
 };
 
-export const signUpUser = async ({ email, password, nickname }) => {
+export const signUpUser = async ({ email, password, nickname, name, phone, selectedAddress, birthdate, selectedGender }) => {
     try {
         const response = await axios.post(
             `${API_URL}/api/auth/register`,
-            { email, password, nickname },
+            {
+                email,
+                password,
+                nickname,
+                name: name || null,
+                phone: phone || null,
+                address: selectedAddress !== '미선택' ? selectedAddress : null,
+                birth: birthdate || null,
+                gender: selectedGender !== '미선택' ? selectedGender : null,
+            },
             { headers: { 'Content-Type': 'application/json' } }
         );
         if (response.status === 201) {

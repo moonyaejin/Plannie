@@ -13,12 +13,26 @@ const SignUp1 = ({ navigation }) => {
             Alert.alert('오류', '이메일을 입력해주세요.');
             return;
         }
-        if (password !== confirmPassword) {
-            Alert.alert('오류', '비밀번호가 일치하지 않습니다.');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            Alert.alert('오류', '올바른 이메일 형식을 입력해주세요.');
+            return;
+        }
+        if (!password) {
+            Alert.alert('오류', '비밀번호를 입력해주세요.');
             return;
         }
         if (password.length < 8) {
             Alert.alert('오류', '비밀번호는 8자 이상이어야 합니다.');
+            return;
+        }
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            Alert.alert('오류', '비밀번호는 영문자, 숫자, 특수문자를 모두 포함해야 합니다.');
+            return;
+        }
+        if (password !== confirmPassword) {
+            Alert.alert('오류', '비밀번호가 일치하지 않습니다.');
             return;
         }
 

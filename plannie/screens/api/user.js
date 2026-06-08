@@ -10,7 +10,6 @@ export const loginUser = async (email, password, navigation) => {
             const { accessToken, nickname } = response.data;
             await AsyncStorage.setItem('userToken', accessToken);
             await AsyncStorage.setItem('userNickname', nickname ?? '');
-            Alert.alert('로그인 성공', '환영합니다!');
             navigation.navigate('Calendar');
         }
     } catch (error) {

@@ -45,16 +45,6 @@ const MyPageMain = () => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={styles.mpProfileButtonContent}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('ProfileEdit')}
-                            contentFit="cover">
-                            <View style={styles.profileFlexBox}>
-                                <Text style={styles.mpProfileButton}>프로필 편집</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                    </View>
                 </View>
             </View>
 

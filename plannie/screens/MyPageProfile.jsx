@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { Text, View, ActivityIndicator } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import styles from "../Styles/MyPageProfileStyles";
 import MyPageTopNav from "../nav/MyPageTopNav";
 import BottomNav from "../nav/BottomNav";
 import { fetchUserProfile } from "./api/user";
 
 const MyPageProfile = () => {
+    const navigation = useNavigation();
     const [profile, setProfile] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
 
@@ -60,9 +61,31 @@ const MyPageProfile = () => {
                     source={require("../assets/MPP_P_frame.png")}
                 />
             </View>
+            <TouchableOpacity
+                style={editButtonStyles.editButton}
+                onPress={() => navigation.navigate('ProfileEdit')}
+            >
+                <Text style={editButtonStyles.editButtonText}>회원정보 수정</Text>
+            </TouchableOpacity>
             <BottomNav />
         </View>
     );
 };
+
+const editButtonStyles = StyleSheet.create({
+    editButton: {
+        backgroundColor: '#4183F3',
+        borderRadius: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 40,
+        alignSelf: 'center',
+        marginBottom: 16,
+    },
+    editButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+});
 
 export default MyPageProfile;

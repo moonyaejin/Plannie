@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet, Alert } from 'react-native';
 import BackButton from '../nav/BackButton';
 
 const SignUp2 = ({ navigation, route }) => {
@@ -9,6 +9,10 @@ const SignUp2 = ({ navigation, route }) => {
     const [phone, setPhone] = useState('');
 
     const handleNext = () => {
+        if (!nickname.trim()) {
+            Alert.alert('오류', '닉네임을 입력해주세요.');
+            return;
+        }
         navigation.navigate('SignUp3', { email, password, nickname, name, phone });
     };
 
