@@ -1,15 +1,18 @@
 /* fonts */
-export const FontFamily = {
-    interBold: 'Inter-Bold',
-    interMedium: 'Inter-Medium',
-    interSemiBold: 'Inter-SemiBold',
-    interRegular: 'Inter-Regular',
-    interThin: 'Inter-Thin',
-    interBlack: 'Inter-Black',
-    interLight: 'Inter-Light',
-    bodyStrong: 'Inter-SemiBold',
-    m3BodyLarge: 'Inter-Regular',
-};
+import {Asset as Font} from "expo-asset";
+
+export async function FontFamily()  {
+    await Font.loadAsync({
+        // 폰트 이름과 파일 경로 설정
+        'interBold': require('./assets/Font/Inter-Bold.ttf'),
+        'interMedium': require('./assets/Font/Inter-Medium.ttf'),
+        'interSemiBold': require('./assets/Font/Inter-SemiBold.ttf'),
+        'interRegular': require('./assets/Font/Inter-Regular.ttf'),
+        'interThin': require('./assets/Font/Inter-Thin.ttf'),
+        'interBlack': require('./assets/Font/Inter-Black.ttf'),
+        'interLight': require('./assets/Font/Inter-Light.ttf'),
+    });
+}
 /* font sizes */
 export const FontSize = {
     size_smi_9: 13,
@@ -28,7 +31,6 @@ export const FontSize = {
     size_5xl: 24,
     bodySmall_size: 14,
     bodyStrong_size: 16,
-    m3BodyLarge_size: 16,
 };
 /* Colors */
 export const Color = {

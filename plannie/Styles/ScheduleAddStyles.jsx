@@ -62,12 +62,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
-    noScheduleText: {
-        textAlign: 'center',
-        marginTop: 40,
-        color: Color.colorDarkgray,
-        fontSize: FontSize.size_base_6,
-    },
 });
 
 export default styles;

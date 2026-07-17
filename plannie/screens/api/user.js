@@ -1,19 +1,27 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '@env';
-import { Alert } from "react-native";
+import {Alert} from "react-native";
+
 
 export const loginUser = async (email, password, navigation) => {
     try {
-        const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+        const response = await axios.post(`${API_URL}/users/login`, {
+            email,
+            password
+        });
+
         if (response.status === 200) {
-            const { accessToken, nickname } = response.data;
-            await AsyncStorage.setItem('userToken', accessToken);
-            await AsyncStorage.setItem('userNickname', nickname ?? '');
+            const { token } = response.data;
+
+            // Store the token in AsyncStorage
+            await AsyncStorage.setItem('userToken', token);
+
+            Alert.alert('로그인 성공', '환영합니다!');
             navigation.navigate('Calendar');
         }
     } catch (error) {
-        if (error.response?.status === 401) {
+        if (error.response && error.response.status === 401) {
             Alert.alert('로그인 실패', '아이디 또는 비밀번호가 일치하지 않습니다.');
         } else {
             console.error('로그인 오류:', error);
@@ -22,53 +30,59 @@ export const loginUser = async (email, password, navigation) => {
     }
 };
 
+
+
+
+// 회원 탈퇴 API
 export const deleteUser = async () => {
     try {
-        const token = await AsyncStorage.getItem('userToken');
-        await axios.delete(`${API_URL}/api/users/me`, {
-            headers: { Authorization: `Bearer ${token}` },
+        const token = await AsyncStorage.getItem('token');
+
+        if (!token) throw new Error('토큰이 없습니다. 로그인 해주세요.');
+
+        const response = await axios.delete(`http://${API_URL}:3000/user/delete`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
-        await AsyncStorage.multiRemove(['userToken', 'userNickname']);
-        return { success: true };
+        return response.data;
     } catch (error) {
-        console.error('탈퇴 오류:', error);
-        return { success: false };
+        console.error('회원 탈퇴 오류:', error.message);
+        throw error;
     }
 };
 
 export const fetchUserProfile = async () => {
     try {
         const token = await AsyncStorage.getItem('userToken');
-        const response = await axios.get(`${API_URL}/api/users/me`, {
+        if (!token) {
+            Alert.alert("로그인 정보가 없습니다.", "다시 로그인 해주세요.");
+            return null;
+        }
+
+        const response = await axios.get(`${API_URL}/user/profile`, {
             headers: { Authorization: `Bearer ${token}` },
         });
+
         return response.data;
     } catch (error) {
-        console.error('프로필 조회 오류:', error);
+        console.error("Error fetching user profile:", error);
+        Alert.alert("오류", "사용자 정보를 가져오는 데 실패했습니다.");
         return null;
     }
 };
-
 export const updateUserProfile = async (formData) => {
     try {
         const token = await AsyncStorage.getItem('userToken');
-        const body = {
-            nickname: formData.nickname,
-            phone: formData.phone || null,
-            address: formData.address || null,
-            birth: formData.birth || null,
-            gender: formData.gender || null,
-            password: formData.password || null,
-        };
-        await axios.put(`${API_URL}/api/users/me`, body, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        if (formData.nickname) {
-            await AsyncStorage.setItem('userNickname', formData.nickname);
-        }
+        await axios.put(
+            `${API_URL}/user/update`,
+            formData,
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
         return { success: true };
     } catch (error) {
-        console.error('프로필 수정 오류:', error);
+        console.error("Error updating profile:", error);
+        Alert.alert('오류', '회원 정보 수정에 실패했습니다.');
         return { success: false };
     }
 };
@@ -81,9 +95,15 @@ export const fetchNickname = async (navigation) => {
             navigation.navigate('Login');
             return null;
         }
-        return await AsyncStorage.getItem('userNickname');
+
+        const response = await axios.get(`${API_URL}/users/profile`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        return response.data.nickname; // Assuming response contains { nickname: 'your_nickname' }
     } catch (error) {
         console.error("Error fetching nickname:", error);
+        Alert.alert("오류", "사용자 정보를 가져오는 데 실패했습니다.");
         return null;
     }
 };
@@ -91,7 +111,6 @@ export const fetchNickname = async (navigation) => {
 export const handleLogout = async (navigation) => {
     try {
         await AsyncStorage.removeItem('userToken');
-        await AsyncStorage.removeItem('userNickname');
         Alert.alert("로그아웃 되었습니다.");
         navigation.navigate('Login');
     } catch (error) {

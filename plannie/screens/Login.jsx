@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, StyleSheet } from 'react-native';
-import { loginUser } from "./api/user";
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import {loginUser} from "./api/user";
 
-const Login = ({ navigation }) => {
+const Login2 = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,58 +13,58 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <Text style={styles.appName}>Plannie</Text>
-                <Text style={styles.header}>로그인</Text>
+        <View style={styles.container}>
+            <Text style={styles.appName}>Plannie</Text>
+            <Text style={styles.header}>로그인</Text>
 
-                <View style={styles.formContainer}>
-                    <View style={styles.inputGroup}>
-                        <Text style={styles.label}>아이디</Text>
-                        <View style={styles.inputBox}>
-                            <TextInput
-                                style={styles.inputText}
-                                placeholder="아이디를 입력하세요"
-                                placeholderTextColor="#878787"
-                                value={email}
-                                onChangeText={setEmail}
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                            />
-                        </View>
+            <View style={styles.formContainer}>
+                {/* Email Section */}
+                <View style={styles.inputGroup}>
+                    <Text style={styles.label}>아이디</Text>
+                    <View style={styles.inputBox}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="아이디를 입력하세요"
+                            placeholderTextColor="#878787"
+                            value={email}
+                            onChangeText={setEmail}
+                        />
                     </View>
+                </View>
 
-                    <View style={styles.inputGroup}>
-                        <Text style={styles.label}>비밀번호</Text>
-                        <View style={styles.inputBox}>
-                            <TextInput
-                                style={styles.inputText}
-                                secureTextEntry
-                                placeholder="비밀번호를 입력하세요"
-                                placeholderTextColor="#878787"
-                                value={password}
-                                onChangeText={setPassword}
-                            />
-                        </View>
+                {/* Password Section */}
+                <View style={styles.inputGroup}>
+                    <Text style={styles.label}>비밀번호</Text>
+                    <View style={styles.inputBox}>
+                        <TextInput
+                            style={styles.inputText}
+                            secureTextEntry
+                            placeholder="비밀번호를 입력하세요"
+                            placeholderTextColor="#878787"
+                            value={password}
+                            onChangeText={setPassword}
+                        />
                     </View>
+                </View>
 
-                    <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-                        <Text style={styles.loginButtonText}>로그인</Text>
+                {/* Login Button */}
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                    <Text style={styles.loginButtonText}>로그인</Text>
+                </TouchableOpacity>
+
+                {/* Signup and Find ID/PW Links */}
+                <View style={styles.linksContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUp1')}>
+                        <Text style={styles.linkText}>회원가입</Text>
                     </TouchableOpacity>
-
-                    <View style={styles.linksContainer}>
-                        <TouchableOpacity onPress={() => navigation.navigate('SignUp1')}>
-                            <Text style={styles.linkText}>회원가입</Text>
-                        </TouchableOpacity>
-                        <View style={styles.linkSeparator}>
-                            <Text style={styles.linkText}>아이디 찾기</Text>
-                            <Text style={styles.separator}> / </Text>
-                            <Text style={styles.linkText}>비밀번호 찾기</Text>
-                        </View>
+                    <View style={styles.linkSeparator}>
+                        <Text style={styles.linkText}>아이디 찾기</Text>
+                        <Text style={styles.separator}> / </Text>
+                        <Text style={styles.linkText}>비밀번호 찾기</Text>
                     </View>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </View>
     );
 };
 
@@ -157,4 +159,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Login2;

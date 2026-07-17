@@ -1,28 +1,17 @@
 import * as React from "react";
-import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, ScrollView, ActivityIndicator, Alert } from "react-native";
 import axios from "axios";
 import styles from "../Styles/MonthListStyles";
-import { API_URL } from '@env';
-import { Color } from '../GlobalStyles';
-import BackButton from '../nav/BackButton';
 
 const MonthList = () => {
     const [schedules, setSchedules] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
-    const [currentDate] = React.useState(new Date());
 
     React.useEffect(() => {
         const fetchSchedules = async () => {
             try {
-                const token = await AsyncStorage.getItem('userToken');
-                const year = currentDate.getFullYear();
-                const month = currentDate.getMonth() + 1;
-                const response = await axios.get(
-                    `${API_URL}/api/schedules/month/${year}/${month}`,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                );
+                const response = await axios.get('http://172.30.1.92:3000/planner/month/2024/06'); // 적절히 연도와 월을 수정
                 setSchedules(response.data);
             } catch (err) {
                 console.error("일정 조회 오류:", err);
@@ -34,20 +23,16 @@ const MonthList = () => {
         fetchSchedules();
     }, []);
 
-    if (loading) return (
-        <View style={stateStyles.center}>
-            <ActivityIndicator size="large" color={Color.colorLightskyblue_100} />
-        </View>
-    );
-    if (error) return (
-        <View style={stateStyles.center}>
-            <Text style={stateStyles.errorText}>{error}</Text>
-        </View>
-    );
+    if (loading) {
+        return <ActivityIndicator size="large" color="#0000ff" />;
+    }
+
+    if (error) {
+        return <Text style={{ color: 'red' }}>{error}</Text>;
+    }
 
     return (
         <View style={styles.monthList}>
-            <BackButton />
             <View style={[styles.bg, styles.bgPosition]} />
             <Text style={styles.mlTitle}>이 달의 일정</Text>
             <View style={styles.scrollContainer}>
@@ -55,12 +40,12 @@ const MonthList = () => {
                     {schedules.map((schedule, index) => (
                         <View key={index} style={styles.mlDate}>
                             <Text style={[styles.day, styles.dayTypo]}>
-                                {new Date(schedule.startDate).toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit', weekday: 'short' })}
+                                {new Date(schedule.start_day).toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit', weekday: 'short' })}
                             </Text>
                             <View style={styles.mlDateList}>
                                 <View style={styles.listFlexBox}>
                                     <Text style={[styles.todo, styles.dayTypo]}>{schedule.title}</Text>
-                                    <Text style={styles.todoTime}>{`${schedule.startTime} - ${schedule.endTime}`}</Text>
+                                    <Text style={styles.todoTime}>{`${schedule.start_time} - ${schedule.end_time}`}</Text>
                                 </View>
                             </View>
                         </View>
@@ -70,20 +55,5 @@ const MonthList = () => {
         </View>
     );
 };
-
-const stateStyles = StyleSheet.create({
-    center: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Color.colorLavender,
-    },
-    errorText: {
-        color: '#E53935',
-        fontSize: 15,
-        textAlign: 'center',
-        paddingHorizontal: 30,
-    },
-});
 
 export default MonthList;

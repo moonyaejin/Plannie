@@ -1,10 +1,13 @@
 import * as React from "react";
 import { Image, Text, View, TouchableOpacity } from "react-native";
 import styles from "../Styles/MyPageAlarmStyles";
+import { useNavigation } from "@react-navigation/native";
 import MyPageTopNav from "../nav/MyPageTopNav";
 import BottomNav from "../nav/BottomNav";
 
 const MyPageAlarm = () => {
+    const navigation = useNavigation();
+
     // 알림 상태를 관리하는 state
     const [alarmSettings, setAlarmSettings] = React.useState({
         receiveAlarm: true,

@@ -160,43 +160,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: "stretch",
     },
-    timePickerButton: {
-        backgroundColor: Color.colorAliceblue,
-        borderRadius: 8,
-        paddingVertical: 6,
-        paddingHorizontal: 14,
-        minWidth: 70,
-        alignItems: 'center',
-    },
-    timePickerText: {
-        fontSize: FontSize.size_base_6,
-        fontFamily: FontFamily.interSemiBold,
-        color: Color.colorDodgerblue,
-        fontWeight: '600',
-    },
-    timeSeparator: {
-        fontSize: FontSize.size_base_6,
-        color: Color.colorDarkslategray_100,
-        marginHorizontal: 4,
-    },
-    input: {
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        textAlignVertical: 'top',
-    },
-    modalCloseButton: {
-        marginTop: 12,
-        backgroundColor: Color.colorDodgerblue,
-        borderRadius: 8,
-        paddingVertical: 10,
-        paddingHorizontal: 30,
-        alignSelf: 'center',
-    },
-    modalCloseText: {
-        color: Color.backgroundDefaultDefault,
-        fontSize: FontSize.size_base_6,
-        fontWeight: '600',
-    },
 });
 
 export default styles;

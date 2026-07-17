@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {Color, FontFamily, FontSize} from "../GlobalStyles";
+import {Color, FontFamily, FontSize, Padding, StyleVariable} from "../GlobalStyles";
 
 const styles = StyleSheet.create({
     calendar: {
@@ -111,24 +111,17 @@ const styles = StyleSheet.create({
     day: {
         width: 45,
         height: 45,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    dayCircle: {
-        width: 38,
-        height: 38,
-        borderRadius: 19,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    scheduledDay: {
-        backgroundColor: 'rgba(143, 190, 255, 0.25)',
     },
     date1: {
+        height: 45,
+        width: 45,
         fontFamily: FontFamily.saralaRegular,
         fontSize: FontSize.size_lg_4,
+        justifyContent: "center",
+        display: "flex",
         textAlign: "center",
         color: Color.labelsPrimary,
+        position: "absolute",
     },
 
     // bottomNav: {

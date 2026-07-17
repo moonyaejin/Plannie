@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { styles } from '../Styles/DeleteAccountStyles';
 import { deleteUser } from './api/user';
-import BackButton from '../nav/BackButton';
 
 function DeleteAccount({ navigation }) {
     const [nickname, setNickname] = useState('');
@@ -11,23 +10,22 @@ function DeleteAccount({ navigation }) {
     const [reason, setReason] = useState('');
 
     const handleDelete = async () => {
-        if (!email || !nickname || !password) {
-            Alert.alert('오류', '이메일, 닉네임, 비밀번호를 모두 입력해주세요.');
-            return;
-        }
-        const { success } = await deleteUser();
-        if (success) {
-            Alert.alert('탈퇴 완료', '회원 탈퇴가 완료되었습니다.');
-            navigation.navigate('StartPage');
+        if (email && nickname && password) { // 실제 조건에 맞춰 수정 가능
+            try {
+                await deleteUser();
+                Alert.alert('탈퇴 완료', '회원 탈퇴가 완료되었습니다.');
+                navigation.navigate('StartPage'); // 탈퇴 후 시작 페이지로 이동
+            } catch (error) {
+                Alert.alert('오류', '회원 탈퇴 중 오류가 발생했습니다.');
+            }
         } else {
-            Alert.alert('오류', '회원 탈퇴 중 오류가 발생했습니다.');
+            Alert.alert('오류', '이메일, 닉네임, 또는 비밀번호가 일치하지 않습니다.');
         }
     };
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.container}>
-                <BackButton />
                 <Text style={styles.title}>회원 탈퇴</Text>
                 
                 <View style={styles.formContainer}>
@@ -42,11 +40,8 @@ function DeleteAccount({ navigation }) {
                     <View style={styles.formRow}>
                         <Text style={styles.label}>이메일</Text>
                         <TextInput
-                            onChangeText={setEmail}
                             value={email}
                             style={styles.input}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
                         />
                     </View>
                     <View style={styles.formRow}>

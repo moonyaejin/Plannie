@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { signUpUser } from "./api/signup";
-import BackButton from '../nav/BackButton';
+import axios from 'axios';
+import {signUpUser} from "./api/signup";
 
 const SignUp3 = ({ route, navigation }) => {
     const { email, password, nickname, name, phone } = route.params;
@@ -59,8 +59,7 @@ const SignUp3 = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <BackButton />
-            <Text style={styles.header}>회원가입</Text>
+            <Text style={styles.header}>Let’s join the Plannie</Text>
             <Text style={styles.requiredText}>* 필수입력항목</Text>
 
             <View style={styles.formContainer}>

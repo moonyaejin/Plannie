@@ -1,10 +1,10 @@
-import { View, Text, TextInput, Alert, TouchableOpacity } from 'react-native';
-import { Image } from 'expo-image';
-import { useEffect, useState } from 'react';
-import { styles } from '../Styles/ProfileEditStyles';
-import { useNavigation } from "@react-navigation/native";
-import { fetchUserProfile, updateUserProfile } from "./api/user";
-import BackButton from '../nav/BackButton';
+import { View, Text, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import {styles} from '../Styles/ProfileEditStyles';
+import {useNavigation} from "@react-navigation/native";
+import {fetchUserProfile, updateUserProfile} from "./api/user";
 
 const ProfileEdit = () => {
     const navigation = useNavigation();
@@ -40,25 +40,21 @@ const ProfileEdit = () => {
         if (success) {
             Alert.alert('성공', '회원 정보가 성공적으로 수정되었습니다.');
             navigation.navigate('MyPageMain');
-        } else {
-            Alert.alert('오류', '회원 정보 수정에 실패했습니다.');
         }
     };
 
 
     return (
         <View style={styles.container}>
-            <BackButton />
             <View style={styles.header}>
                 <Text style={styles.title}>회원정보 수정</Text>
             </View>
-            <View style={styles.profileImageContainer}>
+            <TouchableOpacity style={styles.profileImageContainer}>
                 <Image
-                    source={require('../assets/MP_Photo.png')}
+                    source={{ uri: formData.profileimg || 'https://via.placeholder.com/100' }}
                     style={styles.profileImage}
-                    contentFit="cover"
                 />
-            </View>
+            </TouchableOpacity>
             <View style={styles.formContainer}>
                 <View style={styles.formRow}>
                     <Text style={styles.label}>이름</Text>
